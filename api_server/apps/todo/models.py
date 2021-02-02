@@ -3,7 +3,7 @@ from django.db import models
 
 class Todo(models.Model):
     encoded_data = models.TextField()
-    extension = models.CharField(max_length=300)
+    ext = models.CharField(max_length=300)
     model = models.CharField(max_length=300, blank=True)
     date = models.DateTimeField(auto_now_add=True)
 
