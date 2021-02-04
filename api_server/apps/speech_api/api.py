@@ -69,7 +69,6 @@ class SpeechApiViewSet(viewsets.ModelViewSet):
             'session_id': serializer.data['id'],
             'result': serializer.data['result']
         }
-        SpeechApiModel.objects.filter(id=serializer.data['id']).delete()
         return Response(content)
 
 
