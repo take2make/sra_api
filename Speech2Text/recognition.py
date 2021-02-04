@@ -87,8 +87,8 @@ def run(audio_file, model_choice):
     global model
     model = Model(model_choice)
 
-    cut_dir = 'cut_dir'
-    txt_dir = 'txt'
+    cut_dir = f'cut_dir_{audio_file}'
+    txt_dir = f'txt_{audio_file}'
 
     if os.path.isdir(cut_dir):
         shutil.rmtree(cut_dir)
@@ -96,10 +96,6 @@ def run(audio_file, model_choice):
         shutil.rmtree(txt_dir)
     os.mkdir(cut_dir)
     os.mkdir(txt_dir)
-
-
-
-    print(audio_file)
 
     new_audio_files = cutting_original_audio(audio_file, cut_dir)
 

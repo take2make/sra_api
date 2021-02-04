@@ -38,11 +38,9 @@ def get_result(session_id, encoded_data, extension, model):
     file = scripts.decode_file(encoded_data, name, session_id, extension)
     file_wav = scripts.convert_audio_to_mono_wav(file)
 
-    main_thread = threading.Thread(target = speech_to_txt, args=(file_wav, model,))
-    main_thread.start()
-    main_thread.join()
+    speech_to_txt(file_wav, model)
 
-    result = os.path.join('txt', f'out.txt')
+    result = os.path.join(f'txt_{file_wav}', 'out.txt')
     with open(result, 'r') as file:
         result_txt = file.read()
 
@@ -64,10 +62,12 @@ class SpeechApiViewSet(viewsets.ModelViewSet):
         session = get_object_or_404(queryset, pk=pk)
         serializer = ResultApiSerializer(session)
         content = {
-            'session_id': pk,
+	    'detail': 200,
+            'session_id': serializer.data['id'],
             'result': serializer.data['result']
         }
         return Response(content)
+
 
     def list(self, request):
         print("CALL ALL GET REQUEST")
@@ -77,6 +77,7 @@ class SpeechApiViewSet(viewsets.ModelViewSet):
         print(serializer.data)
         return Response(serializer.data)
 
+
     def create(self, request):
         print("CREATE NEW RECORD")
 
@@ -85,15 +86,10 @@ class SpeechApiViewSet(viewsets.ModelViewSet):
             self.perform_create(serializer)
             threading.Thread(target=get_result, args=(serializer.data['id'],serializer.data['encoded_data'], serializer.data['ext'], serializer.data['model'],)).start()
             content = {
-                'status': 200,
+                'detail': 200,
                 'session_id': serializer.data['id'],
             }
             SpeechApiModel.objects.filter(id=serializer.data['id']).delete()
-
             return Response(content)
-        content = {
-            'status': 400,
-        }
+
         return Response(content)
-        #headers = self.get_success_headers(serializer.data)
-        #return Response(serializer.data, headers=headers)
