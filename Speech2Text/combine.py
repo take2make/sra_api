@@ -27,3 +27,4 @@ def main(audio_file, model_choice):
        print('COMBINING')
        combine_txt(txt_dir)
        os.remove(audio_file)
+       shutil.rmtree(txt_dir)
