@@ -19,7 +19,8 @@ def combine_txt(txt_dir):
 			f.write(txt)
 
 def main(audio_file, model_choice):
-    txt_dir = 'txt'
+    name = audio_file.split('/')[1]
+    txt_dir = f'txt_{name}'
     recognition.run(audio_file, model_choice)
 
     if os.path.isdir(txt_dir):

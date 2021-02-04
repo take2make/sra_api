@@ -40,7 +40,8 @@ def get_result(session_id, encoded_data, extension, model):
 
     speech_to_txt(file_wav, model)
 
-    result = os.path.join(f'txt_{file_wav}', 'out.txt')
+    name = file_wav.split('/')[1]
+    result = os.path.join(f'txt_{name}', 'out.txt')
     with open(result, 'r') as file:
         result_txt = file.read()
 
