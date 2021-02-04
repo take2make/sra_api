@@ -38,9 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'api_server.apps.todo',
+    'api_server.apps.speech_api',
     'rest_framework',
-    'versatileimagefield',
 ]
 
 MIDDLEWARE = [
