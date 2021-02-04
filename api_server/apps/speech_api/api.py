@@ -44,6 +44,7 @@ def get_result(session_id, encoded_data, extension, model):
     result = os.path.join(f'txt_{name}', 'out.txt')
     with open(result, 'r') as file:
         result_txt = file.read()
+
     shutil.rmtree(txt_dir)
     SpeechApiModel.objects.create(id=session_id, encoded_data="", ext="", result=result_txt)
     pass
@@ -67,6 +68,7 @@ class SpeechApiViewSet(viewsets.ModelViewSet):
             'session_id': serializer.data['id'],
             'result': serializer.data['result']
         }
+        SpeechApiModel.objects.filter(id=serializer.data['id']).delete()
         return Response(content)
 
 
