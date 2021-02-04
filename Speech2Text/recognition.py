@@ -89,7 +89,8 @@ def run(audio_file, model_choice):
 
     global model
     model = Model(model_choice)
-	name = audio_file.split('/')[1]
+
+    name = audio_file.split('/')[1]
     cut_dir = f'cut_dir_{name}'
     txt_dir = f'txt_{name}'
 

@@ -37,7 +37,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="/home/alex/PyProjects/django-api-server/venv"
+VIRTUAL_ENV="/home/alex/PyProjects/sra_api/venv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

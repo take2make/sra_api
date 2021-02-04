@@ -1,4 +1,4 @@
-#!/home/alex/PyProjects/django-api-server/venv/bin/python3
+#!/home/alex/PyProjects/sra_api/venv/bin/python3
 # When the django-admin.py deprecation ends, remove this script.
 import warnings
 
