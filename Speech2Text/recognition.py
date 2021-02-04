@@ -106,4 +106,4 @@ def run(audio_file, model_choice):
     threads = main(new_audio_files, txt_dir)
     for thr in threads:
     	thr.join()
-	shutil.rmtree(cut_dir)
+    shutil.rmtree(cut_dir)
