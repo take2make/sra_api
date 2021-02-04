@@ -8,6 +8,7 @@ import wave
 import json
 from pathlib import Path
 
+
 def get_length_audio(audio):
 	length = ffmpeg.probe(audio)['format']['duration']
 	return float(length)
@@ -24,6 +25,7 @@ def cutting_original_audio(audio, cut_dir, split_size=60*3):
 
 	return new_audio_file
 
+
 def read_wave(wf, rec):
 	ans = ""
 	while True:
@@ -38,6 +40,7 @@ def read_wave(wf, rec):
 	        ans += '. '
 
 	return ans
+
 
 def save_file(result, file):
 	with open(file,"w") as f:
