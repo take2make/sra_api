@@ -11,7 +11,7 @@ from Speech2Text import combine
 import os
 import threading
 import time
-
+import shutil
 
 def speech_to_txt(audio_file, model_choice):
     model_choice = model_choice.split(' ')
@@ -44,7 +44,7 @@ def get_result(session_id, encoded_data, extension, model):
     result = os.path.join(f'txt_{name}', 'out.txt')
     with open(result, 'r') as file:
         result_txt = file.read()
-
+    shutil.rmtree(txt_dir)
     SpeechApiModel.objects.create(id=session_id, encoded_data="", ext="", result=result_txt)
     pass
 
