@@ -13,7 +13,7 @@ import threading
 import time
 import shutil
 
-def speech_to_txt(audio_file, model_choice):
+def speech_to_txt(audio_file, model_choice, vocab):
     model_choice = model_choice.split(' ')
 
     model = os.path.join('models', 'model_'+model_choice[0]+'_'+model_choice[1])
@@ -21,7 +21,7 @@ def speech_to_txt(audio_file, model_choice):
 
     #-------------start recognition and combining-----------------#
     print(f'\n your model {model}\n and audio_file {audio} \n')
-    combine.main(audio, model)
+    combine.main(audio, model, vocab)
     #-------------------------------------------------------------#
     pass
 

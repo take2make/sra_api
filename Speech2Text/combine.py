@@ -18,10 +18,10 @@ def combine_txt(txt_dir):
 			txt = open_file(file)
 			f.write(txt)
 
-def main(audio_file, model_choice):
+def main(audio_file, model_choice, DICT):
     name = audio_file.split('/')[1]
     txt_dir = f'txt_{name}'
-    recognition.run(audio_file, model_choice)
+    recognition.run(audio_file, model_choice, DICT)
 
     if os.path.isdir(txt_dir):
        print('COMBINING')
