@@ -5,7 +5,7 @@ import re
 def delete_punctuation(txt_file):
 	without_punctuation = re.sub(r'[^\w\s]','',txt_file)
 	without_numbers = re.sub(r'[0-9]+', '', without_punctuation)
-	return without_numbers.rstrip('\n')
+	return without_numbers.rstrip('\n').lower()
 
 def decode_file(encoded_data, name, session, extension):
     file_res = f'{name}_{session}.{extension}'

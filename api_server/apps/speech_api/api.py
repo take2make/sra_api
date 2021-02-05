@@ -13,6 +13,7 @@ import threading
 import time
 import shutil
 
+
 def speech_to_txt(audio_file, model_choice, vocab):
     model_choice = model_choice.split(' ')
 
@@ -39,7 +40,22 @@ def get_result(session_id, encoded_data, extension, model, vocab):
     file = scripts.decode_file(encoded_data, name, session_id, extension)
     file_wav = scripts.convert_audio_to_mono_wav(file)
 
-    speech_to_txt(file_wav, model, vocab)
+    if len(vocab) != 0:
+        speech_to_txt(file_wav, model, '')
+
+        name = file_wav.split('/')[1]
+        txt_dir = f'txt_{name}'
+        result = os.path.join(txt_dir, 'out.txt')
+        with open(result, 'r') as file:
+            result_txt = file.read()
+
+        shutil.rmtree(txt_dir)
+        if model.split(' ')[0] == 'ru':
+            speech_to_txt(file_wav, 'ru simple', vocab)
+        elif model.split(' ')[0] == 'en':
+            speech_to_txt(file_wav, 'en simple', vocab)
+    else:
+        speech_to_txt(file_wav, model, vocab='')
 
     name = file_wav.split('/')[1]
     txt_dir = f'txt_{name}'
@@ -47,7 +63,6 @@ def get_result(session_id, encoded_data, extension, model, vocab):
     with open(result, 'r') as file:
         result_txt = file.read()
 
-    shutil.rmtree(txt_dir)
     SpeechApiModel.objects.create(id=session_id, encoded_data="", ext="", result=result_txt)
     pass
 
