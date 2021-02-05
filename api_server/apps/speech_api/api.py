@@ -19,9 +19,10 @@ def speech_to_txt(audio_file, model_choice, vocab):
     model = os.path.join('models', 'model_'+model_choice[0]+'_'+model_choice[1])
     audio = audio_file
 
+    new_vocab = scripts.delete_punctuation(vocab)
     #-------------start recognition and combining-----------------#
     print(f'\n your model {model}\n and audio_file {audio} \n')
-    combine.main(audio, model, vocab)
+    combine.main(audio, model, new_vocab)
     #-------------------------------------------------------------#
     pass
 

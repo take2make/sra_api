@@ -85,12 +85,14 @@ def main(audio_files, txt_dir):
     return threads
 
 
-def run(audio_file, model_choice, DICT):
+def run(audio_file, model_choice, vocab):
 
     if not os.path.exists(model_choice):
         print ("Please download the model from https://alphacephei.com/vosk/models and unpack as 'model' in the current folder.")
         exit (1)
 
+    global DICT
+    DICT = vocab
     global model
     model = Model(model_choice)
 
