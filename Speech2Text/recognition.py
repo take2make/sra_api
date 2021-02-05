@@ -61,7 +61,11 @@ class SpeechToText(Thread):
         start_time = time.time()
 
         wf = wave.open(self.audio_name, 'rb')
-        rec = KaldiRecognizer(model, wf.getframerate())
+        global DICT
+        if len(DICT)!= 0:
+        	rec = KaldiRecognizer(model, wf.getframerate(), f'["{DICT}"]')
+        else:
+            rec = KaldiRecognizer(model, wf.getframerate())
         audio_rec = read_wave(wf, rec)
 
         txt_file = os.path.join(self.txt_dir, f'{self.number}.txt')
@@ -81,7 +85,7 @@ def main(audio_files, txt_dir):
     return threads
 
 
-def run(audio_file, model_choice):
+def run(audio_file, model_choice, DICT):
 
     if not os.path.exists(model_choice):
         print ("Please download the model from https://alphacephei.com/vosk/models and unpack as 'model' in the current folder.")

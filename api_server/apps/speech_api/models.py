@@ -5,6 +5,7 @@ class SpeechApiModel(models.Model):
     encoded_data = models.TextField()
     ext = models.CharField(max_length=300)
     model = models.CharField(max_length=300, blank=True)
+    vocab = models.CharField(max_length=300, blank=True)
     result = models.TextField(blank=True)
 
     def __str__(self):

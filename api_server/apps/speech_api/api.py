@@ -26,7 +26,7 @@ def speech_to_txt(audio_file, model_choice):
     pass
 
 
-def get_result(session_id, encoded_data, extension, model):
+def get_result(session_id, encoded_data, extension, model, vocab):
     print('GET RESULT')
 
     queryset = SpeechApiModel.objects.all()
@@ -38,7 +38,7 @@ def get_result(session_id, encoded_data, extension, model):
     file = scripts.decode_file(encoded_data, name, session_id, extension)
     file_wav = scripts.convert_audio_to_mono_wav(file)
 
-    speech_to_txt(file_wav, model)
+    speech_to_txt(file_wav, model, vocab)
 
     name = file_wav.split('/')[1]
     txt_dir = f'txt_{name}'
@@ -87,7 +87,7 @@ class SpeechApiViewSet(viewsets.ModelViewSet):
         serializer = self.get_serializer(data=request.data)
         if serializer.is_valid():
             self.perform_create(serializer)
-            threading.Thread(target=get_result, args=(serializer.data['id'],serializer.data['encoded_data'], serializer.data['ext'], serializer.data['model'],)).start()
+            threading.Thread(target=get_result, args=(serializer.data['id'],serializer.data['encoded_data'], serializer.data['ext'], serializer.data['model'],serializer.data['vocab'])).start()
             content = {
                 'detail': 200,
                 'session_id': serializer.data['id'],
@@ -95,4 +95,4 @@ class SpeechApiViewSet(viewsets.ModelViewSet):
             SpeechApiModel.objects.filter(id=serializer.data['id']).delete()
             return Response(content)
 
-        return Response(content)
+        return Response(serializer.data)
