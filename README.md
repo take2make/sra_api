@@ -14,6 +14,10 @@
 
 ## Процесс запуска и установки (unix системы)
 
+git clone https://github.com/take2make/sra_api.git
+
+cd sra_api
+
 Создание виртуального окружения
 
 > python3 -m venv venv
