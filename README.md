@@ -14,12 +14,12 @@
 
 ## Процесс запуска и установки (unix системы)
 
-> Создание виртуального окружения
-> python3 -m venv venv
-> Активация виртуального окружения
-> source venv/bin/activate
-> Установка необходимых зависимостей
-> pip3 install -r requirements.txt
+## Создание виртуального окружения ##
+python3 -m venv venv
+## Активация виртуального окружения ##
+source venv/bin/activate
+## Установка необходимых зависимостей ##
+## pip3 install -r requirements.txt ##
 
 ## Запуск
 
