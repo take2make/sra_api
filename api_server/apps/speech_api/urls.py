@@ -4,7 +4,7 @@ from django.urls import include
 from . import views
 
 
-
+# структура url
 router = routers.DefaultRouter()
 router.register('api/speech_api',  SpeechApiViewSet, 'speech_api')
 

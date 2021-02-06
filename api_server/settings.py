@@ -26,6 +26,7 @@ SECRET_KEY = '%2)%cp7!(t@5asc2ndm*ryj28u-djp18cbfk!^ch*s_-@dc!x8'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+# здесь необходимо добавлять хосты для работы
 ALLOWED_HOSTS = ['46.101.227.60', '127.0.0.1', '192.168.1.11', '192.168.1.218']
 
 

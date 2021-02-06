@@ -1,7 +1,7 @@
 from django.contrib import admin
 from .models import SpeechApiModel
 
-# Register your models here.
+# Адимнка для апи (Опционально)
 class SpeechApiAdmin(admin.ModelAdmin):
     list_display = ('id', 'ext', 'model')
     list_display_links = ('id', 'model',)
