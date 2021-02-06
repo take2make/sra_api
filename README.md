@@ -28,7 +28,7 @@
 
 ## Запуск
 
-python3 manage.py runserver
+> python3 manage.py runserver
 
 Прежде, может понадобится запустить необходимые миграции:
 python3 manage.py makemigrations
