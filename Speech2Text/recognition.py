@@ -135,11 +135,12 @@ def main(audio_files, txt_dir):
 	input: audio_files - имена нарезанных аудио файлов
 		   txt_dir - путь сохрания конвертации
 	"""
-    threads = []
-    for num, audio_name in enumerate(audio_files):
-        threads.append(SpeechToText(num, audio_name, txt_dir))
-        threads[num].start()
-    return threads
+
+	threads = []
+	for num, audio_name in enumerate(audio_files):
+		threads.append(SpeechToText(num, audio_name, txt_dir))
+		threads[num].start()
+	return threads
 
 
 def run(audio_file, model_choice, vocab):
@@ -152,36 +153,36 @@ def run(audio_file, model_choice, vocab):
 
 	"""
 
-    if not os.path.exists(model_choice):
-        print ("Please download the model from https://alphacephei.com/vosk/models and unpack as 'model' in the current folder.")
-        exit (1)
+	if not os.path.exists(model_choice):
+		print ("Please download the model from https://alphacephei.com/vosk/models and unpack as 'model' in the current folder.")
+		exit (1)
 
-    global DICT
-    DICT = vocab
-    global model
+	global DICT
+	DICT = vocab
+	global model
 
 	# Инициализация модели
-    model = Model(model_choice)
+	model = Model(model_choice)
 
 	# получение сессии работы
-    name = audio_file.split('/')[1]
-    cut_dir = f'cut_dir_{name}'
-    txt_dir = f'txt_{name}'
+	name = audio_file.split('/')[1]
+	cut_dir = f'cut_dir_{name}'
+	txt_dir = f'txt_{name}'
 
-    if os.path.isdir(cut_dir):
-        shutil.rmtree(cut_dir)
-    if os.path.isdir(txt_dir):
-        shutil.rmtree(txt_dir)
-    os.mkdir(cut_dir)
-    os.mkdir(txt_dir)
+	if os.path.isdir(cut_dir):
+		shutil.rmtree(cut_dir)
+	if os.path.isdir(txt_dir):
+		shutil.rmtree(txt_dir)
+	os.mkdir(cut_dir)
+	os.mkdir(txt_dir)
 
 	# режем исходное аудио на фрагменты, и запускаем их обработку
 	# в отдельных потоках
-    new_audio_files = cutting_original_audio(audio_file, cut_dir)
+	new_audio_files = cutting_original_audio(audio_file, cut_dir)
 
 	# создание потоков
-    threads = main(new_audio_files, txt_dir)
-    for thr in threads:
+	threads = main(new_audio_files, txt_dir)
+	for thr in threads:
 		# ожидаем завершения всех потоков
-    	thr.join()
-    shutil.rmtree(cut_dir)
+		thr.join()
+	shutil.rmtree(cut_dir)

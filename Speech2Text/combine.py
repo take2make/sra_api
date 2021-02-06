@@ -21,14 +21,14 @@ def combine_txt(txt_dir):
     """
 
     # определяем количество фрагментов
-	num_files = len(os.listdir(txt_dir))
-	out_file = os.path.join(txt_dir, 'out.txt')
+    num_files = len(os.listdir(txt_dir))
+    out_file = os.path.join(txt_dir, 'out.txt')
 
-	with open(out_file, 'a') as f:
-		for i in range(num_files):
-			file = os.path.join(txt_dir, f'{i}.txt')
-			txt = open_file(file)
-			f.write(txt)
+    with open(out_file, 'a') as f:
+        for i in range(num_files):
+            file = os.path.join(txt_dir, f'{i}.txt')
+            txt = open_file(file)
+            f.write(txt)
 
 def main(audio_file, model_choice, DICT):
     """
