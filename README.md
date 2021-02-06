@@ -26,6 +26,8 @@
 
 > pip3 install -r requirements.txt
 
+После необходимо добавить две папки media и models. В папку media будут грузиться аудио файлы. В папку models необходимо скидывать модели vosk api. https://alphacephei.com/vosk/models 
+
 ## Запуск
 
 > python3 manage.py runserver
