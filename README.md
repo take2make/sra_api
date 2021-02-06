@@ -39,7 +39,3 @@
 Прежде, может понадобится запустить необходимые миграции:
 python3 manage.py makemigrations
 python3 manage.py migrate
-
-## Пример запущенного приложения
-
-![alt tag](https://github.com/take2make/sra_api/blob/main/view.png)
