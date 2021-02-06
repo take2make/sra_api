@@ -14,9 +14,9 @@
 
 ## Процесс запуска и установки (unix системы)
 
-git clone https://github.com/take2make/sra_api.git
+> git clone https://github.com/take2make/sra_api.git
 
-cd sra_api
+> cd sra_api
 
 Создание виртуального окружения
 
